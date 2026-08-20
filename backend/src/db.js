@@ -1,19 +1,21 @@
 import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
 
-const sql = neon(process.env.DATABASE_URL);
+export const sql = neon(process.env.DATABASE_URL);
 
-async function setup() {
+export async function setupDB() {
   try {
     console.log('Connection established');
 
     await sql`
-      CREATE TABLEIF NOT EXISTS books (
+      CREATE TABLE IF NOT EXISTS books (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
+        price INT NOT NULL,
         author VARCHAR(255),
         publication_year INT,
-        in_stock BOOLEAN,
+        genre VARCHAR(255),
+        in_stock BOOLEAN NOT NULL,
         stock_amount INT
       );
     `;
@@ -24,5 +26,3 @@ async function setup() {
     console.error('Connection failed.', err);
   }
 }
-
-setup();
