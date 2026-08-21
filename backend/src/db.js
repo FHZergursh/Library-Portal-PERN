@@ -11,7 +11,7 @@ export async function setupDB() {
       CREATE TABLE IF NOT EXISTS books (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
-        price INT NOT NULL,
+        price DECIMAL(10, 2),
         author VARCHAR(255),
         publication_year INT,
         genre VARCHAR(255),
@@ -19,7 +19,7 @@ export async function setupDB() {
         stock_amount INT
       );
     `;
-    console.log('Finished creating books table.');
+    console.log('Finished initialising DB.');
 
 
   } catch (err) {
