@@ -9,6 +9,7 @@ import {bookTableHeaders} from "../types/books.ts"
 
 const BooksOverview = () => {
   const [books, setBooks] = useState<Book[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -21,56 +22,65 @@ const BooksOverview = () => {
     fetchBooks()
   }, [])
 
-  
 
-
-
-  return (
-    <div>
-      <Header />
+  if (loading == true)
+  {
+    return (
+      <div>loading</div>
+    )
+  }
+  else {
+    return (
       <div>
-        <h1>Overview</h1>
+        <Header />
+        <div>
+          <h1>Overview</h1>
 
-        <div>Subtext & information </div>
-        <div>Gap here</div>
+          <div>Subtext & information </div>
+          <div>Gap here</div>
 
-        <div>Table</div>
-        <table>
-          <thead>
-            <tr>
-              {bookTableHeaders.map((header) => (
-                <th key={header.id}>
-                  <span>{header.label}</span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((entry) => (
-              <tr key={entry.id}>
-
-                <td>{entry.title}</td>
-                <td>{entry.price}</td>
-                <td>{entry.author}</td>
-                <td>{entry.publication_year}</td>
-                <td>{entry.genre}</td>
-                <td>{entry.in_stock}</td>
-                <td>{entry.stock_amount}</td>
-
-
+          <div>Table</div>
+          <table>
+            <thead>
+              <tr>
+                {bookTableHeaders.map((header) => (
+                  <th key={header.id}>
+                    <span>{header.label}</span>
+                  </th>
+                ))}
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {books.map((entry) => (
+                <tr key={entry.id}>
 
-          </tbody>
-        </table>
+                  <td>{entry.title}</td>
+                  <td>{entry.price}</td>
+                  <td>{entry.author}</td>
+                  <td>{entry.publication_year}</td>
+                  <td>{entry.genre}</td>
+                  <td>{entry.in_stock}</td>
+                  <td>{entry.stock_amount}</td>
 
+
+                </tr>
+              ))}
+
+            </tbody>
+          </table>
+
+
+        </div>
+        <Footer />
+        
 
       </div>
-      <Footer />
-      
+    )
+  }
 
-    </div>
-  )
+
+
+
 }
 
 export default BooksOverview
