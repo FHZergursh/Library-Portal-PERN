@@ -3,6 +3,7 @@ import { setupDB } from "./db.js";
 import dotenv from "dotenv"
 import bookRoutes from "./routes/bookRoutes.js";
 import cors from "cors"
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config()
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/api/books", bookRoutes)
+app.use("/api/users", userRoutes)
 
 setupDB().then(
   app.listen(port, () => {
