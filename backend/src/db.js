@@ -24,10 +24,8 @@ export async function setupDB() {
     CREATE TABLE IF NOT EXISTS users (
       user_id SERIAL PRIMARY KEY,
       username VARCHAR(255) NOT NULL, 
-      email VARCHAR (255) NOT NULL, 
-      password VARCHAR(255) NOT NULL, 
-
-
+      email VARCHAR (255) UNIQUE NOT NULL, 
+      password VARCHAR(255) NOT NULL
     );
   `;
 
@@ -38,7 +36,7 @@ export async function setupDB() {
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     id INT,
     FOREIGN KEY (id) REFERENCES books(id),
-    date_due DATE,
+    date_due DATE
   )`
 
 
