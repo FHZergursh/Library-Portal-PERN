@@ -17,6 +17,7 @@ const BooksOverview = () => {
       const res = await response.json()
       setBooks(res.data) 
       console.log(res.data)
+      setLoading(false)
       
     }
     fetchBooks()
@@ -39,35 +40,37 @@ const BooksOverview = () => {
           <div>Subtext & information </div>
           <div>Gap here</div>
 
-          <div>Table</div>
-          <table>
-            <thead>
-              <tr>
-                {bookTableHeaders.map((header) => (
-                  <th key={header.id}>
-                    <span>{header.label}</span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {books.map((entry) => (
-                <tr key={entry.id}>
-
-                  <td>{entry.title}</td>
-                  <td>{entry.price}</td>
-                  <td>{entry.author}</td>
-                  <td>{entry.publication_year}</td>
-                  <td>{entry.genre}</td>
-                  <td>{entry.in_stock}</td>
-                  <td>{entry.stock_amount}</td>
-
-
+          <h1 className='flex justify-center items-center'>Table</h1>
+          <div className='flex justify-center'>
+            <table className='table border-separate border-spacing-y-3 w-[80vw]'>
+              <thead>
+                <tr>
+                  {bookTableHeaders.map((header) => (
+                    <th key={header.id}>
+                      <span className=''>{header.label}</span>
+                    </th>
+                  ))}
                 </tr>
-              ))}
+              </thead>
+              <tbody>
+                {books.map((entry) => (
+                  
+                  <tr key={entry.id} className='text-center '>
+                    <td className='w-[15%]'>{entry.title}</td>
+                    <td className='w-[10%]'>£{entry.price}</td>
+                    <td className='w-[15%]'>{entry.author}</td>
+                    <td className='w-[10%]'>{entry.publication_year}</td>
+                    <td className='w-[30%]'>{entry.genre}</td>
+                    <td className='w-[10%]'>{entry.in_stock}</td>
+                    <td className='w-[10%]'>{entry.stock_amount}</td>
 
-            </tbody>
-          </table>
+
+                  </tr>
+                ))}
+
+              </tbody>
+            </table>
+          </div>
 
 
         </div>

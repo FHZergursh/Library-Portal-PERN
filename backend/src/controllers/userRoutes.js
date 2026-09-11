@@ -68,7 +68,7 @@ export const getAllUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const {user_id} = req.params
-    const {username, email}
+    const {username, email} = req.body
 
   } catch (error) {
     console.log(error)
